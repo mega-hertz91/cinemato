@@ -9,6 +9,11 @@ export const ResponseStatus = {
 
 export const namespacesMap = {
   index: 'movies',
+  'index-page': 'movies',
   movies: 'movies',
-  serials: 'serials'
+  'movies-page': 'movies',
+  serials: 'serials',
+  'serials-page': 'serials',
+  search: 'movies',
+  'search-page': 'movies'
 }
