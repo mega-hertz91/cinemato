@@ -9,7 +9,7 @@ export const ResponseStatus = {
 
 export const namespacesMap = {
   index: 'movies',
-  'index-page': 'movies',
+  page: 'movies',
   movies: 'movies',
   'movies-page': 'movies',
   serials: 'serials',
