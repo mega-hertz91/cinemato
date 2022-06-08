@@ -1,7 +1,7 @@
 <template>
   <div>
     <films-list :films="films" />
-    <app-pagination path-name="search-page" :query="true" />
+    <app-pagination path-name="search-page" />
   </div>
 </template>
 
@@ -19,12 +19,19 @@ export default {
   computed: {
     films () {
       return this.$store.state.cdn.films
-    },
-    currentPageStore () {
-      return this.$store.state.cdn.currentPage
     }
   },
-  created () {
+  mounted () {
+    this.$watch(
+      () => this.$store.state.cdn.queryString,
+      (newVal, oldVal) => {
+        this.$store.dispatch('cdn/searchFilms', {
+          routeName: namespacesMap[this.$route.query.namespace],
+          query: newVal
+        })
+      }
+    )
+
     this.$store.dispatch('cdn/searchFilms', {
       routeName: namespacesMap[this.$route.query.namespace],
       query: this.$route.query.query

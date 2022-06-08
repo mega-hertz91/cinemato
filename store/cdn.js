@@ -3,7 +3,7 @@ export const state = () => ({
   currentPage: 1,
   totalPages: 0,
   loading: true,
-  querySearch: ''
+  queryString: ''
 })
 
 export const mutations = {
@@ -18,8 +18,8 @@ export const mutations = {
   disableLoading (state) {
     state.loading = false
   },
-  setQuerySearch (state, query) {
-    state.querySearch = query
+  setQueryString (state, query) {
+    state.queryString = query
   }
 }
 

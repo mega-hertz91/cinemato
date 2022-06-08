@@ -24,7 +24,7 @@ export default {
       return this.$store.state.cdn.currentPage
     }
   },
-  created () {
+  mounted () {
     this.$store.dispatch('cdn/lastFilms', {
       routeName: namespacesMap[this.$route.query.namespace],
       query: this.$route.query.query,

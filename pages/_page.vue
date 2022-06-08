@@ -20,7 +20,7 @@ export default {
       return this.$store.state.cdn.films
     }
   },
-  created () {
+  mounted () {
     this.$store.dispatch('cdn/lastFilms', { routeName: 'movies', page: this.$route.params.page })
   }
 }

@@ -37,7 +37,8 @@ export default {
     pathName: {
       type: String,
       required: true
-    }
+    },
+    queryString: Boolean
   },
   computed: {
     paginator () {
