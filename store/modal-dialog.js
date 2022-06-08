@@ -1,6 +1,5 @@
 export const state = () => ({
-  active: false,
-  film: {}
+  active: false
 })
 
 export const mutations = {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <films-list :films="films" />
-    <app-pagination path-name="page" />
+    <app-pagination path-name="serials-page" />
   </div>
 </template>
 
@@ -10,21 +10,18 @@ import FilmsList from '@/components/FilmsList'
 import AppPagination from '@/components/layouts/AppPagination'
 
 export default {
-  name: 'IndexPage',
+  name: 'SerialsPage',
   components: {
-    FilmsList,
-    AppPagination
+    AppPagination,
+    FilmsList
   },
   computed: {
     films () {
       return this.$store.state.cdn.films
-    },
-    currentPageStore () {
-      return this.$store.state.cdn.currentPage
     }
   },
   created () {
-    this.$store.dispatch('cdn/lastFilms', { routeName: 'movies' })
+    this.$store.dispatch('cdn/updateFilms', { routeName: 'serials' })
   }
 }
 </script>

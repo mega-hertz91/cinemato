@@ -1,27 +1,27 @@
 <template>
   <div>
     <films-list :films="films" />
+    <app-pagination path-name="page" />
   </div>
 </template>
 
 <script>
 import FilmsList from '@/components/FilmsList'
+import AppPagination from '@/components/layouts/AppPagination'
 
 export default {
-  name: 'SerialsPage',
+  name: 'DynamicIndexPage',
   components: {
-    FilmsList
+    FilmsList,
+    AppPagination
   },
   computed: {
     films () {
       return this.$store.state.cdn.films
-    },
-    currentPageStore () {
-      return this.$store.state.cdn.currentPage
     }
   },
   created () {
-    this.$store.dispatch('cdn/updateFilms', { routeName: 'serials', page: 1 })
+    this.$store.dispatch('cdn/lastFilms', { routeName: 'movies', page: this.$route.params.page })
   }
 }
 </script>

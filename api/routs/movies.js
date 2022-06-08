@@ -35,4 +35,19 @@ export default (app) => {
         .status(ResponseStatus.SERVER_ERROR)
     }
   })
+
+  router.get('/last', async (req, res) => {
+    try {
+      const { page } = req.query
+      const films = await api.lastAdded('movies', page)
+
+      res
+        .send(films.data)
+        .status(ResponseStatus.SUCCESS)
+    } catch (e) {
+      res
+        .send(e)
+        .status(ResponseStatus.SERVER_ERROR)
+    }
+  })
 }

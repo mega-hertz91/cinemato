@@ -17,7 +17,7 @@ export default {
         {
           id: 1,
           name: 'Фильмы',
-          path: 'index'
+          path: 'movies'
         },
         {
           id: 2,

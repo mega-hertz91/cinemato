@@ -6,13 +6,13 @@
         <div class="relative bg-white text-left overflow-hidden shadow-xl transform transition-all w-8/12">
           <div class="flex justify-start items-center bg-gray-700 pl-3">
             <p class="text-gray-300">
-              {{ $store.state["modal-dialog"].film['ru_title'] }}
+              {{ film['ru_title'] }}
             </p>
             <button
               title="Закрыть окно"
               type="button"
               class="bg-gray-700 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 ml-auto"
-              @click.prevent="closeDialog"
+              @click.self="closeDialog"
             >
               <span class="sr-only">Закрыть окно</span>
               <!-- Heroicon name: outline/x -->
@@ -28,7 +28,7 @@
               </svg>
             </button>
           </div>
-          <iframe :src="$store.state['modal-dialog'].film.iframe_src" width="100%" style="height: 65vh;" frameborder="0" allowfullscreen />
+          <iframe :src="film.iframe_src" width="100%" style="height: 65vh;" frameborder="0" allowfullscreen />
         </div>
       </div>
     </div>
@@ -38,9 +38,16 @@
 <script>
 export default {
   name: 'AppModalDialog',
+  computed: {
+    film () {
+      this.$store.commit('modal-dialog/open')
+      return this.$store.state.cdn.films.find(item => item.id === this.$route.params.view)
+    }
+  },
   methods: {
     closeDialog () {
       this.$store.commit('modal-dialog/close')
+      this.$router.back()
     }
   }
 }

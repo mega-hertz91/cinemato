@@ -61,8 +61,7 @@ export default {
   },
 
   router: {
-    trailingSlash: true,
-    middleware: ['router']
+    trailingSlash: true
   },
 
   // Configuration theme

@@ -10,9 +10,7 @@ export const mutations = {
   addFilms (state, films) {
     state.films = films.data
     state.totalPages = Number(films.last_page)
-  },
-  setCurrentPage (state, page) {
-    state.currentPage = page
+    state.currentPage = films.current_page
   },
   enableLoading (state) {
     state.loading = true
@@ -26,15 +24,21 @@ export const mutations = {
 }
 
 export const actions = {
-  async updateFilms ({ commit, state }, { routeName }) {
+  async updateFilms ({ commit, state }, { routeName, page }) {
     commit('enableLoading')
-    const films = await this.$axios.$get(`/api/${routeName}?page=${state.currentPage}`)
+    const films = await this.$axios.$get(`/api/${routeName}?page=${page}`)
     commit('addFilms', films)
     commit('disableLoading')
   },
-  async searchFilms ({ commit, state }, { routeName, query }) {
+  async searchFilms ({ commit, state }, { routeName, page, query }) {
     commit('enableLoading')
-    const films = await this.$axios.$get(`/api/${routeName !== 'index' ? routeName : 'movies'}/search?page=${state.currentPage}&query=${query}&field=title`)
+    const films = await this.$axios.$get(`/api/${routeName !== 'index' ? routeName : 'movies'}/search?page=${page}&query=${query}&field=title`)
+    commit('addFilms', films)
+    commit('disableLoading')
+  },
+  async lastFilms ({ commit, state }, { routeName, page }) {
+    commit('enableLoading')
+    const films = await this.$axios.$get(`/api/${routeName !== 'index' ? routeName : 'movies'}/last?page=${page}&field=title`)
     commit('addFilms', films)
     commit('disableLoading')
   }

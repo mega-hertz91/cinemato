@@ -1,7 +1,7 @@
 <template>
   <div>
     <films-list :films="films" />
-    <app-pagination path-name="page" />
+    <app-pagination path-name="movies-page" />
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('cdn/lastFilms', { routeName: 'movies' })
+    this.$store.dispatch('cdn/updateFilms', { routeName: 'movies' })
   }
 }
 </script>
