@@ -6,3 +6,9 @@ export const ResponseStatus = {
   NOT_FOUND: 404,
   SERVER_ERROR: 500
 }
+
+export const namespacesMap = {
+  index: 'movies',
+  movies: 'movies',
+  serials: 'serials'
+}

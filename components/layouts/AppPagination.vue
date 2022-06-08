@@ -2,12 +2,12 @@
   <div class="container m-auto flex justify-center pt-6 pb-3">
     <ul class="flex flex-wrap justify-between items-stretch">
       <li>
-        <nuxt-link :to="{name: pathName, params: {page: 1}}" class="p-2 bg-gray-300">
+        <nuxt-link :to="{name: pathName, params: {page: 1}, query: $route.query}" class="p-2 bg-gray-300">
           &lt;&lt;
         </nuxt-link>
       </li>
       <li v-for="(paginatorItem, index) in paginator.start" :key="index">
-        <nuxt-link :to="{name: pathName, params: {page: paginatorItem}}" class="p-2 bg-gray-300">
+        <nuxt-link :to="{name: pathName, params: {page: paginatorItem}, query: $route.query}" class="p-2 bg-gray-300">
           {{ paginatorItem }}
         </nuxt-link>
       </li>
@@ -17,12 +17,12 @@
         </a>
       </li>
       <li v-for="(paginatorItem, index) in paginator.end" :key="index + 5">
-        <nuxt-link :to="{name: pathName, params: {page: paginatorItem}}" class="p-2 bg-gray-300">
+        <nuxt-link :to="{name: pathName, params: {page: paginatorItem}, query: $route.query}" class="p-2 bg-gray-300">
           {{ paginatorItem }}
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link :to="{name: pathName, params: {page: $store.state.cdn.totalPages}}" class="p-2 bg-gray-300">
+        <nuxt-link :to="{name: pathName, params: {page: $store.state.cdn.totalPages}, query: $route.query}" class="p-2 bg-gray-300">
           &gt;&gt;
         </nuxt-link>
       </li>

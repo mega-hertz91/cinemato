@@ -21,9 +21,12 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-      <button type="submit" class="w-1/12 bg-gray-700 text-gray-300 hover:bg-gray-800 duration-200" @click.prevent="setQuery">
-        Найти
-      </button>
+      <nuxt-link
+        :to="{name: 'search', query: {query: query, namespace: $route.name}}"
+        class="w-1/12 bg-gray-700 text-gray-300 hover:bg-gray-800 duration-200 flex justify-center items-center"
+      >
+        <span>Найти</span>
+      </nuxt-link>
     </form>
   </div>
 </template>
@@ -37,14 +40,9 @@ export default {
     }
   },
   methods: {
-    setQuery () {
-      this.$store.commit('cdn/setQuerySearch', this.query)
-      this.$store.dispatch('cdn/searchFilms', { routeName: this.$route.name, query: this.query })
-    },
     clearSearchInput () {
       this.query = ''
-      this.$store.commit('cdn/setQuerySearch', '')
-      this.$store.dispatch('cdn/updateFilms', { routeName: this.$route.name !== 'index' ? this.$route.name : 'movies' })
+      this.$router.push({ name: 'index' })
     }
   }
 }
