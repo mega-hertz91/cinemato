@@ -46,12 +46,12 @@ export default {
       this.$router.push({ name: 'index' })
     },
     search () {
-      this.$store.commit('cdn/setQueryString', this.query)
+      this.$store.commit('cdn/setQuery', this.query)
       this.$router.push({
         name: 'search',
         query: {
           query: this.query,
-          namespace: this.$route.name
+          namespace: this.$route.name !== 'search' ? this.$route.name : this.$route.query.namespace
         }
       })
     }

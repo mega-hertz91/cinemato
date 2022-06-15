@@ -28,7 +28,7 @@
               </svg>
             </button>
           </div>
-          <iframe :src="film.iframe_src" width="100%" style="height: 65vh;" frameborder="0" allowfullscreen />
+          <iframe :src="film.iframe_src" width="100%" style="height: 65vh;" allowfullscreen />
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@ export default {
   computed: {
     film () {
       this.$store.commit('modal-dialog/open')
-      return this.$store.state.cdn.films.find(item => item.id === this.$route.params.view)
+      return this.$store.state.cdn.films.find(item => item.id === this.$route.params.id)
     }
   },
   methods: {

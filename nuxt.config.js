@@ -54,6 +54,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // eslint-disable-next-line no-empty-pattern
+    extend (config, { }) {
+      config.node = {
+        fs: 'empty'
+      }
+    }
   },
 
   serverMiddleware: {

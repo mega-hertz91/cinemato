@@ -1,6 +1,7 @@
 <template>
   <div class="container m-auto">
-    <ul class="flex flex-wrap items-stretch w-full">
+    <page-loader v-if="$store.state.cdn.loading" />
+    <ul v-else class="flex flex-wrap items-stretch w-full">
       <film-card v-for="film in films" :key="film.id" :film="film" />
     </ul>
   </div>
@@ -8,10 +9,12 @@
 
 <script>
 import FilmCard from '@/components/FilmCard'
+import PageLoader from '@/components/layouts/PageLoader'
 
 export default {
   name: 'FilmsList',
   components: {
+    PageLoader,
     FilmCard
   },
   props: {

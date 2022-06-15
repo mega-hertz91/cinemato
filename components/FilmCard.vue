@@ -1,6 +1,6 @@
 <template>
   <li class="w-6/12 lg:w-3/12 xl:w-2/12 2xl:w-2/12 p-3 cursor-pointer">
-    <nuxt-link :to="{name: 'view', params: {view: film.id}}">
+    <nuxt-link :to="{name: 'view-id', params: {id: film.id}}">
       <div class="border film-card h-full">
         <img :src="`https://st.kp.yandex.net/images/film_iphone/iphone360_${film['kinopoisk_id']}.jpg`" :alt="film['ru_title']" class="w-full h-auto">
         <div class="pt-3 pb-3">

@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'MoviesPage',
   computed: {
     films () {
       return this.$store.state.cdn.films
     }
   },
   mounted () {
-    this.$store.dispatch('cdn/loadFilms', { path: 'movies' })
+    this.$store.dispatch('cdn/loadFilms', { path: 'movies', query: '&year=2020' })
   }
 }
 </script>
