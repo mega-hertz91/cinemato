@@ -2,7 +2,7 @@
   <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
     <div class="fixed z-10 inset-0 overflow-y-auto">
-      <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0" @click="closeDialog">
+      <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0" @click="$router.back()">
         <div class="relative bg-white text-left overflow-hidden shadow-xl transform transition-all w-8/12">
           <div class="flex justify-start items-center bg-gray-700 pl-3">
             <p class="text-gray-300">
@@ -12,10 +12,9 @@
               title="Закрыть окно"
               type="button"
               class="bg-gray-700 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 ml-auto"
-              @click.self="closeDialog"
+              @click.self="$router.back()"
             >
               <span class="sr-only">Закрыть окно</span>
-              <!-- Heroicon name: outline/x -->
               <svg
                 class="h-6 w-6"
                 xmlns="http://www.w3.org/2000/svg"
@@ -36,18 +35,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'AppModalDialog',
-  computed: {
-    film () {
-      this.$store.commit('modal-dialog/open')
-      return this.$store.state.cdn.films.find(item => item.id === this.$route.params.id)
-    }
-  },
-  methods: {
-    closeDialog () {
-      this.$store.commit('modal-dialog/close')
-      this.$router.back()
+  props: {
+    film: {
+      type: Object,
+      required: true
     }
   }
 }
