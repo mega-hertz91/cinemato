@@ -2,17 +2,17 @@
   <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
     <div class="fixed z-10 inset-0 overflow-y-auto">
-      <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0" @click="$router.back()">
-        <div class="relative bg-white text-left overflow-hidden shadow-xl transform transition-all w-8/12">
+      <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0 relative z-10" @click="closeModalDialog">
+        <div class="relative z-50 bg-white text-left overflow-hidden shadow-xl transform transition-all w-8/12">
           <div class="flex justify-start items-center bg-gray-700 pl-3">
             <p class="text-gray-300">
-              {{ film['ru_title'] }}
+              {{ $store.state.cdn.loading ? 'Loading...' : film['ru_title'] }}
             </p>
             <button
               title="Закрыть окно"
               type="button"
               class="bg-gray-700 p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 ml-auto"
-              @click.self="$router.back()"
+              @click.self="closeModalDialog"
             >
               <span class="sr-only">Закрыть окно</span>
               <svg
@@ -27,7 +27,9 @@
               </svg>
             </button>
           </div>
-          <iframe :src="film.iframe_src" width="100%" style="height: 65vh;" allowfullscreen />
+          <div>
+            <iframe :src="film.iframe_src" width="100%" style="height: 65vh;" allowfullscreen />
+          </div>
         </div>
       </div>
     </div>
@@ -41,7 +43,23 @@ export default {
   props: {
     film: {
       type: Object,
-      required: true
+      required: true,
+      default: () => {
+        return {
+          title_ru: false,
+          iframe_src: false,
+          year: 2020
+        }
+      }
+    }
+  },
+  methods: {
+    closeModalDialog () {
+      if (this.$store.state.routeCounter > 2) {
+        this.$router.back()
+      } else {
+        this.$router.push({ name: this.$route.params.path })
+      }
     }
   }
 }

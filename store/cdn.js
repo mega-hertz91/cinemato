@@ -23,6 +23,12 @@ export const mutations = {
   }
 }
 
+export const getters = {
+  filmById: state => (id) => {
+    return state.films.find(f => f.imdb_id === id)
+  }
+}
+
 export const actions = {
   async loadFilms ({ commit, state }, { path, query }) {
     commit('enableLoading')
