@@ -51,7 +51,7 @@ export default {
         name: 'search',
         query: {
           query: this.query,
-          namespace: this.$route.name !== 'search' ? this.$route.name : this.$route.query.namespace
+          namespace: this.$store.state.search.path
         }
       })
     }

@@ -1,21 +1,26 @@
 <template>
   <div>
     <app-modal-dialog :film="film" />
+    <films-list :films="films" />
   </div>
 </template>
 
 <script>
 import AppModalDialog from '~/components/layouts/AppModalDialog'
+
 export default {
   name: 'ViewIdPages',
   components: { AppModalDialog },
   computed: {
     film () {
-      return this.$store.getters['cdn/filmById'](this.$route.params.id)
+      return this.$store.state.cdn.film
+    },
+    films () {
+      return this.$store.state.cdn.films
     }
   },
   mounted () {
-    this.$store.dispatch('cdn/loadFilms', { path: this.$route.params.path === 'index' ? 'movies' : this.$route.params.path, query: `&field=${this.$route.params.id}` })
+    this.$store.dispatch('cdn/loadFilmByID', this.$route.params.id)
   }
 }
 </script>

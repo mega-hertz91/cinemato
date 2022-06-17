@@ -5,12 +5,7 @@
 </template>
 
 <script>
-
-export const namespacesMap = {
-  index: 'movies',
-  serials: 'serials',
-  movies: 'movies'
-}
+import { routsMap } from '@/components/constants'
 
 export default {
   name: 'SearchPage',
@@ -26,11 +21,12 @@ export default {
   },
   mounted () {
     this.updateFilms(this.$route.query.namespace, this.$route.query.query)
+    this.$store.commit('search/setQueryPath', 'movies')
   },
   methods: {
     updateFilms (namespace, query) {
-      if (namespacesMap[namespace] !== undefined) {
-        this.$store.dispatch('cdn/loadFilms', { path: namespacesMap[namespace], query: `&query=${query}` })
+      if (routsMap[namespace] !== undefined) {
+        this.$store.dispatch('cdn/loadFilms', { path: routsMap[namespace], query: `&query=${query}` })
       } else {
         this.$router.push({ name: 'index' })
       }

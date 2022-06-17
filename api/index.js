@@ -27,6 +27,19 @@ const app = express();
         .send(e)
     }
   })
+
+  app.use('/short', async (req, res) => {
+    try {
+      const response = await api.requestTo('short', req.originalUrl.split('?').pop())
+
+      res
+        .send(response.data)
+    } catch (e) {
+      res
+        .status(500)
+        .send(e)
+    }
+  })
 })()
 
 export default app

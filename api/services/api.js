@@ -13,6 +13,8 @@ class Api {
   }
 
   requestTo (path, queryString) {
+    // eslint-disable-next-line no-console
+    console.log(`${path}/?api_token=${this._token}&${queryString}`)
     return this._api.get(`${path}/?api_token=${this._token}&${queryString}`)
   }
 }

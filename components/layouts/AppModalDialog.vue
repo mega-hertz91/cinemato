@@ -6,7 +6,7 @@
         <div class="relative z-50 bg-white text-left overflow-hidden shadow-xl transform transition-all w-8/12">
           <div class="flex justify-start items-center bg-gray-700 pl-3">
             <p class="text-gray-300">
-              {{ $store.state.cdn.loading ? 'Loading...' : film['ru_title'] }}
+              {{ $store.state.cdn.loading ? 'Загрузка...' : film.title }}
             </p>
             <button
               title="Закрыть окно"
@@ -46,7 +46,7 @@ export default {
       required: true,
       default: () => {
         return {
-          title_ru: false,
+          title_ru: 'Loading...',
           iframe_src: false,
           year: 2020
         }
